@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Contexts\AccountContext\UseCases\" />
+    <None Remove="Contexts\AccountContext\UseCases\Create\" />
+    <None Remove="Contexts\SharedContext\UseCases\" />
+    <None Remove="Contexts\AccountContext\UseCases\Create\Contracts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contexts\AccountContext\UseCases\" />
+    <Folder Include="Contexts\AccountContext\UseCases\Create\" />
+    <Folder Include="Contexts\SharedContext\UseCases\" />
+    <Folder Include="Contexts\AccountContext\UseCases\Create\Contracts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="2.0.5" />
+  </ItemGroup>
+</Project>
