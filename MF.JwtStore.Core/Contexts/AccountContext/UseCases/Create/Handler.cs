@@ -1,10 +1,11 @@
-﻿using MF.JwtStore.Core.Contexts.AccountContext.Entities;
+﻿using MediatR;
+using MF.JwtStore.Core.Contexts.AccountContext.Entities;
 using MF.JwtStore.Core.Contexts.AccountContext.UseCases.Create.Contracts;
 using MF.JwtStore.Core.Contexts.AccountContext.ValueObjects;
 
 namespace MF.JwtStore.Core.Contexts.AccountContext.UseCases.Create;
 
-public class Handler
+public class Handler : IRequestHandler<Request, Response>
 {
     private readonly IRepository _repository;
     private readonly IService _service;

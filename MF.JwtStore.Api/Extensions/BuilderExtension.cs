@@ -29,6 +29,16 @@ namespace MF.JwtStore.Api.Extensions
                 builder.Configuration.GetSection("Secrets")
                                      .GetValue<string>("PasswordSaltKey")
                                      ?? string.Empty;
+
+            Configuration.Secrets.SendGrid =
+                builder.Configuration.GetSection("Secrets")
+                                     .GetValue<string>("SendGrid")
+                                     ?? string.Empty;
+
+            Configuration.Secrets.Email =
+                builder.Configuration.GetSection("Secrets")
+                                     .GetValue<string>("Email")
+                                     ?? string.Empty;
         }
 
         public static void AddDatabase(this WebApplicationBuilder builder)
@@ -58,6 +68,12 @@ namespace MF.JwtStore.Api.Extensions
             });
 
             builder.Services.AddAuthorization();
+        }
+
+        public static void AddMediator(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddMediatR(x
+                => x.RegisterServicesFromAssemblies(typeof(Configuration).Assembly));
         }
     }
 }

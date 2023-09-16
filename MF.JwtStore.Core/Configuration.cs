@@ -12,6 +12,8 @@ public static class Configuration
         public string ApiKey { get; set; } = string.Empty;
         public string JwtPrivateKey { get; set; } = string.Empty;
         public string PasswordSaltKey { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string SendGrid { get; set; } = string.Empty;
     }
 
     public class DatabaseConfiguration
