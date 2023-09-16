@@ -10,4 +10,3 @@ public interface IRepository
     Task SaveAsync(User user,
         CancellationToken cancellationToken);
 }
-
