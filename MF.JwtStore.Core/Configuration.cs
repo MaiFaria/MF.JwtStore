@@ -23,8 +23,8 @@ public static class Configuration
 
     public class EmailConfiguration
     {
-        public string DefaultFromEmail { get; set; } = "mf@test.io";
-        public string DefaultFromName { get; set; } = "test.io";
+        public string DefaultFromEmail { get; set; } = "mf.mai@hotmail.com";
+        public string DefaultFromName { get; set; } = "mf.mai";
     }
 
     public class SendGridConfiguration

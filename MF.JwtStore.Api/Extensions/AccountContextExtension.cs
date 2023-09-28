@@ -15,6 +15,14 @@ public static class AccountContextExtension
         builder.Services.AddTransient<IRepository, Repository>();
 
         #endregion
+
+        #region Authenticate
+
+        builder.Services.AddTransient<
+            Core.Contexts.AccountContext.UseCases.Authenticate.Contracts.IRepository,
+            Infra.Contexts.AccountContext.UseCases.Authenticate.Repository>();
+
+        #endregion
     }
 
     public static void MapAccountEndpoints(this WebApplication app)
@@ -30,6 +38,26 @@ public static class AccountContextExtension
             return result.IsSuccess
                 ? Results.Created($"api/v1/users/{result.Data?.Id}", result)
                 : Results.Json(result, statusCode: result.Status);
+        });
+
+        #endregion
+
+        #region Authenticate
+
+        app.MapPost("api/v1/authenticate", async (
+            Core.Contexts.AccountContext.UseCases.Authenticate.Request request,
+            IRequestHandler<
+                Core.Contexts.AccountContext.UseCases.Authenticate.Request,
+                Core.Contexts.AccountContext.UseCases.Authenticate.Response> handler) =>
+        {
+            var result = await handler.Handle(request, new CancellationToken());
+            if (!result.IsSuccess)
+                return Results.Json(result, statusCode: result.Status);
+
+            if (result.Data is null)
+                return Results.Json(result, statusCode: 500);
+
+            return Results.Ok(result);
         });
 
         #endregion

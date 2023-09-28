@@ -11,12 +11,16 @@
     <None Remove="Contexts\AccountContext\UseCases\Create\" />
     <None Remove="Contexts\SharedContext\UseCases\" />
     <None Remove="Contexts\AccountContext\UseCases\Create\Contracts\" />
+    <None Remove="Contexts\AccountContext\UseCases\Authenticate\" />
+    <None Remove="Contexts\AccountContext\UseCases\Authenticate\Contracts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contexts\AccountContext\UseCases\" />
     <Folder Include="Contexts\AccountContext\UseCases\Create\" />
     <Folder Include="Contexts\SharedContext\UseCases\" />
     <Folder Include="Contexts\AccountContext\UseCases\Create\Contracts\" />
+    <Folder Include="Contexts\AccountContext\UseCases\Authenticate\" />
+    <Folder Include="Contexts\AccountContext\UseCases\Authenticate\Contracts\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Flunt" Version="2.0.5" />

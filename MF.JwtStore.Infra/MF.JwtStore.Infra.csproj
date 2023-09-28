@@ -17,9 +17,11 @@
   <ItemGroup>
     <None Remove="Contexts\AccountContext\UseCases\" />
     <None Remove="Contexts\AccountContext\UseCases\Create\" />
+    <None Remove="Contexts\AccountContext\UseCases\Authenticate\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contexts\AccountContext\UseCases\" />
     <Folder Include="Contexts\AccountContext\UseCases\Create\" />
+    <Folder Include="Contexts\AccountContext\UseCases\Authenticate\" />
   </ItemGroup>
 </Project>
