@@ -51,11 +51,14 @@ public static class AccountContextExtension
                 Core.Contexts.AccountContext.UseCases.Authenticate.Response> handler) =>
         {
             var result = await handler.Handle(request, new CancellationToken());
+
             if (!result.IsSuccess)
                 return Results.Json(result, statusCode: result.Status);
 
             if (result.Data is null)
                 return Results.Json(result, statusCode: 500);
+
+            result.Data.Token = JwtExtension.Generate(result.Data);
 
             return Results.Ok(result);
         });
@@ -63,4 +66,3 @@ public static class AccountContextExtension
         #endregion
     }
 }
-

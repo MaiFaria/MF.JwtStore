@@ -12,33 +12,33 @@ namespace MF.JwtStore.Api.Extensions
         public static void AddConfiguration(this WebApplicationBuilder builder)
         {
             Configuration.Database.ConnectionString =
-                builder.Configuration.GetConnectionString("DefaultConnection")
-                                     ?? string.Empty;
+                builder.Configuration.GetConnectionString("DefaultConnection") ??
+                                     string.Empty;
 
             Configuration.Secrets.ApiKey =
                 builder.Configuration.GetSection("Secrets")
-                                     .GetValue<string>("ApiKey")
-                                     ?? string.Empty;
+                                     .GetValue<string>("ApiKey") ??
+                                     string.Empty;
 
             Configuration.Secrets.JwtPrivateKey =
                 builder.Configuration.GetSection("Secrets")
-                                     .GetValue<string>("JwtPrivateKey")
-                                     ?? string.Empty;
+                                     .GetValue<string>("JwtPrivateKey") ??
+                                     string.Empty;
 
             Configuration.Secrets.PasswordSaltKey =
                 builder.Configuration.GetSection("Secrets")
-                                     .GetValue<string>("PasswordSaltKey")
-                                     ?? string.Empty;
+                                     .GetValue<string>("PasswordSaltKey") ??
+                                     string.Empty;
 
             Configuration.Secrets.SendGrid =
                 builder.Configuration.GetSection("Secrets")
-                                     .GetValue<string>("SendGrid")
-                                     ?? string.Empty;
+                                     .GetValue<string>("SendGrid") ??
+                                     string.Empty;
 
             Configuration.Secrets.Email =
                 builder.Configuration.GetSection("Secrets")
-                                     .GetValue<string>("Email")
-                                     ?? string.Empty;
+                                     .GetValue<string>("Email") ??
+                                     string.Empty;
         }
 
         public static void AddDatabase(this WebApplicationBuilder builder)
