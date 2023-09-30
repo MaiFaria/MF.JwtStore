@@ -14,15 +14,14 @@ public partial class Email : ValueObject
     public Email(string address)
     {
         if (string.IsNullOrEmpty(address))
-            throw new Exception("E-mail inválido");
+            throw new Exception("Invalid email");
 
         Address = address.Trim().ToLower();
 
         if (Address.Length < 5 ||
             !EmailRegex().IsMatch(Address))
-            throw new Exception("E-mail inválido");
+            throw new Exception("Invalid email");
     }
-
 
     public string Address { get; }
     public string Hash => Address.ToBase64();

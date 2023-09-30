@@ -28,6 +28,8 @@ public class User : Entity
     public Password Password { get; private set; } = null!;
     public string Image { get; private set; } = string.Empty;
 
+    public List<Role> Roles { get; set; } = new();
+
     public void UpdatePassword(string plainTextPassword,
                                string code)
     {
@@ -50,4 +52,3 @@ public class User : Entity
         Password = password;
     }
 }
-

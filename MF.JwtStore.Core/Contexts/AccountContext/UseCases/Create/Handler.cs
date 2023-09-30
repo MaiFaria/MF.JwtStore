@@ -20,21 +20,21 @@ public class Handler : IRequestHandler<Request, Response>
     public async Task<Response> Handle(Request request,
                                        CancellationToken cancellationToken)
     {
-        #region Validar requisição
+        #region Validate request
         try
         {
             var response = Specification.Ensure(request);
             if (!response.IsValid)
-                return new Response("Requisição inválida",
+                return new Response("Invalid request",
                     400, response.Notifications);
         }
         catch
         {
-            return new Response("Não foi possível validar sua requisição", 500);
+            return new Response("Unable to validate your request", 500);
         }
         #endregion
 
-        #region Gerar Objetos
+        #region Generate Objects
         Email email;
         Password password;
         User user;
@@ -51,31 +51,31 @@ public class Handler : IRequestHandler<Request, Response>
         }
         #endregion
 
-        #region Verifica usuário existente
+        #region Check existing user
         try
         {
             var exists = await _repository.AnyAsync(request.Email, cancellationToken);
             if (exists)
-                return new Response("Este E-mail já está em uso.", 400);
+                return new Response("This email is already in use.", 400);
         }
         catch 
         {
-            return new Response("Falha ao verificar E-mail cadastrado", 500);
+            return new Response("Failed to verify registered email", 500);
         }
         #endregion
 
-        #region Persistir os dados
+        #region Persist data
         try
         {
             await _repository.SaveAsync(user, cancellationToken);
         }
         catch
         {
-            return new Response("Falha ao persistir dados.", 500);
+            return new Response("Failed to persist data.", 500);
         }
         #endregion
 
-        #region Enviar e-mail de confirmação
+        #region Send confirmation email
         try
         {
             await _service.SendVerificationEmailAsync(user, cancellationToken);
@@ -85,7 +85,7 @@ public class Handler : IRequestHandler<Request, Response>
 
         #endregion
 
-        return new Response("Conta criada",
+        return new Response("Account created",
             new ResponseData(user.Id, user.Name, user.Email));
     }
 }

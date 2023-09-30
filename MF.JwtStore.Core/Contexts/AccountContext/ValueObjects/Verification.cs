@@ -21,16 +21,15 @@ public class Verification : ValueObject
     public void Verify(string code)
     {
         if (IsActive)
-            throw new Exception("Este item já esta ativo.");
+            throw new Exception("This item is already active.");
 
         if (ExpiresAt < DateTime.Now)
-            throw new Exception("Este código já expirou");
+            throw new Exception("This code has already expired");
 
         if (!string.Equals(code.Trim(), code.Trim(), StringComparison.CurrentCultureIgnoreCase))
-            throw new Exception("Código de verificação inválido");
+            throw new Exception("Invalid verification code");
 
         ExpiresAt = null;
         VerifiedAt = DateTime.Now;
     }
 }
-

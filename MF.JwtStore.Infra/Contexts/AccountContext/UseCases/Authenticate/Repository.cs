@@ -16,6 +16,7 @@ namespace MF.JwtStore.Infra.Contexts.AccountContext.UseCases.Authenticate
                                                      CancellationToken cancellationToken)
             => await _context.Users
                              .AsNoTracking()
+                             .Include(x => x.Roles)
                              .FirstOrDefaultAsync(x => x.Email.Address.Equals(email),
                                                   cancellationToken);
     }

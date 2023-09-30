@@ -60,5 +60,17 @@ public class UserMap : IEntityTypeConfiguration<User>
             .Property(e => e.ResetCode)
             .HasColumnName("PasswordResetCode")
             .IsRequired();
+
+        builder.HasMany(x => x.Roles)
+               .WithMany(x => x.Users)
+               .UsingEntity<Dictionary<string, object>>("RoleUser",
+                     role => role.HasOne<Role>()
+                                 .WithMany()
+                                 .HasForeignKey("RolesId")
+                                 .OnDelete(DeleteBehavior.Cascade),
+                     user => user.HasOne<User>()
+                                 .WithMany()
+                                 .HasForeignKey("UsersId")
+                                 .OnDelete(DeleteBehavior.Cascade));
     }
 }

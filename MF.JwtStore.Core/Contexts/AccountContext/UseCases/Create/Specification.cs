@@ -7,9 +7,11 @@ public static class Specification
 {
     public static Contract<Notification> Ensure(Request request)
         => new Contract<Notification>()
-        .Requires()
-            .IsLowerThan(request.Password.Length, 40, "Password", "A senha deve conter menos que 40 caracteres")
-            .IsGreaterThan(request.Password.Length, 8, "Password", "A senha deve conter mais que 8 caracteres")
-            .IsEmail(request.Email, "Email", "E-mail inválido");
+                .Requires()
+                .IsLowerThan(request.Password.Length, 40,
+                    "Password", "Password must contain less than 40 characters")
+                .IsGreaterThan(request.Password.Length, 8,
+                    "Password", "Password must contain more than 8 characters")
+                .IsEmail(request.Email,
+                    "Email", "Invalid email");
 }
-
